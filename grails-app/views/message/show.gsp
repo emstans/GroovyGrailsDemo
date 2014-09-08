@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="author-label" class="property-label"><g:message code="message.author.label" default="Author" /></span>
 					
-						<span class="property-value" aria-labelledby="author-label"><g:link controller="user" action="show" id="${messageInstance?.author?.id}">${messageInstance?.author?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="author-label"><g:link controller="user" action="show" id="${messageInstance?.author?.id}">${messageInstance?.author?.username.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

@@ -122,13 +122,20 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'board.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'board.UserRole'
 grails.plugin.springsecurity.authority.className = 'board.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
+	'/':                              ['permitAll'], //default rules
 	'/index':                         ['permitAll'],
 	'/index.gsp':                     ['permitAll'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
+	'/**/favicon.ico':                ['permitAll'],
+	
+	'/**': 							  ['ROLE_ADMIN'], //admins can see everything
+	'/register/index': 				  ['permitAll'],  //anyone can register
+	
+	'message/index': 				  ['permitAll'], //anyone can view messages
+	'message/create':				  ['ROLE_USER','ROLE_ADMIN']  //must login to create messages
+	//TODO: move specific action permissions to controller annotations
 ]
 

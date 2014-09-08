@@ -8,7 +8,7 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-message" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+		<a href="#list-message" cAuthorlass="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -24,7 +24,7 @@
 			<thead>
 					<tr>
 					
-						<th><g:message code="message.author.label" default="Author" /></th>
+						<th><g:message code="message.author.username" default="Author" /></th>
 					
 						<g:sortableColumn property="messageBody" title="${message(code: 'message.messageBody.label', default: 'Message Body')}" />
 					
