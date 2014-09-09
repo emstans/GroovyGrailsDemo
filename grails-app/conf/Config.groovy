@@ -135,7 +135,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/register/index': 				  ['permitAll'],  //anyone can register
 	
 	'message/index': 				  ['permitAll'], //anyone can view messages
-	'message/create':				  ['ROLE_USER','ROLE_ADMIN']  //must login to create messages
+	
 	//TODO: move specific action permissions to controller annotations
 ]
 

@@ -5,25 +5,30 @@ import org.springframework.security.access.annotation.Secured
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-@Secured(['ROLE_ADMIN','ROLE_USER'])
+
 @Transactional(readOnly = true)
 class MessageController {
 		
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	//not sure if annotating 'permitAll' is the best practice here
+	@Secured(['permitAll']) //anyone can view messages index
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Message.list(params), model:[messageInstanceCount: Message.count()]
     }
 
+	@Secured(['permitAll']) //anyone can view individual messages
     def show(Message messageInstance) {
         respond messageInstance
     }
 
+	@Secured(['ROLE_USER']) //must be logged in to create a new message
     def create() {
         respond new Message(params)
     }
 
+	@Secured(['ROLE_USER'])
     @Transactional
     def save(Message messageInstance) {
         if (messageInstance == null) {
@@ -47,11 +52,12 @@ class MessageController {
         }
     }
 
-	@Secured(['ROLE_ADMIN'])
+	@Secured(['ROLE_ADMIN']) //only admins can edit messages
     def edit(Message messageInstance) {
         respond messageInstance
     }
-
+	
+	@Secured(['ROLE_ADMIN'])
     @Transactional
     def update(Message messageInstance) {
         if (messageInstance == null) {
@@ -75,7 +81,7 @@ class MessageController {
         }
     }
 	
-	@Secured(['ROLE_ADMIN'])
+	@Secured(['ROLE_ADMIN']) //only admins can delete messages
     @Transactional
     def delete(Message messageInstance) {
 

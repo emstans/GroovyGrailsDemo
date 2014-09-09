@@ -14,11 +14,15 @@ class BootStrap {
 		
 		def testAdmin = new User(username: 'admin', enabled: true, password: 'password')
 		testAdmin.save(flush: true)
+		
+		//admin is both admin role and user role
+		//this simplifies controller annotations a bit
 		UserRole.create testAdmin, adminRole, true
+		UserRole.create testAdmin, userRole, true 
 		
 		assert User.count() == 2
 		assert Role.count() == 2
-		assert UserRole.count() == 2
+		assert UserRole.count() == 3
     }
     def destroy = {
     }
