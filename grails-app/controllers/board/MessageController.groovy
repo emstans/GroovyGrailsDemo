@@ -1,8 +1,7 @@
 package board
-
-
 import org.springframework.security.access.annotation.Secured
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.SpringSecurityService
 import grails.transaction.Transactional
 
 
@@ -10,7 +9,8 @@ import grails.transaction.Transactional
 class MessageController {
 		
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+	SpringSecurityService springSecurityService;
+	
 	//not sure if annotating 'permitAll' is the best practice here
 	@Secured(['permitAll']) //anyone can view messages index
     def index(Integer max) {
@@ -25,7 +25,8 @@ class MessageController {
 
 	@Secured(['ROLE_USER']) //must be logged in to create a new message
     def create() {
-        respond new Message(params)
+		String messageBody;
+        respond new Message(messageBody, User.get(springSecurityService.principal.id))
     }
 
 	@Secured(['ROLE_USER'])
@@ -41,6 +42,9 @@ class MessageController {
             return
         }
 
+		messageInstance.messageDate = new Date()
+		//messageInstance.author = User.get(springSecurityService.principal.id)
+		
         messageInstance.save flush:true
 
         request.withFormat {
