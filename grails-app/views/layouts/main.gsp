@@ -17,13 +17,24 @@
 		<g:layoutHead/>
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner">
-			<g:link controller="Message">Message Index</g:link>
-			<g:link controller="Login">Log In</g:link>
-			<g:link controller="Logout">Log Out</g:link>
-			<g:link controller="Register">Register</g:link>
+		<div class="nav" role="navigation">
+			<ul>
+				<g:if test="${controllerName}">
+					<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				</g:if>
+				<li><g:link class="list" controller="Message" action="index"><g:message code="default.list.label" args="['Message']" /></g:link></li>
+				<sec:ifNotLoggedIn>
+					<li><g:link controller="Login">Log In</g:link></li>
+					<li>or</li>
+					<li><g:link controller="Register">Register</g:link></li>
+				</sec:ifNotLoggedIn>
+				<sec:ifLoggedIn>
+					<li><g:link class="create" controller="Message" action="create"><g:message code="default.new.label" args="['Message']" /></g:link></li>
+					<li><g:link controller="Logout">Log Out</g:link></li>
+				</sec:ifLoggedIn>
+				
+			</ul>
 		</div>
-		
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>

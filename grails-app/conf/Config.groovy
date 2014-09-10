@@ -143,10 +143,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll'],
-	
-	'/**': 							  ['ROLE_ADMIN'], //admins can see everything
 	'/register/**': 				  ['permitAll'],  //anyone can register
-	
+	'/**': 							  ['ROLE_ADMIN'], //admins can see everything
 	//'message/index': 				  ['permitAll'], //anyone can view messages
 	'/message/create': 				  ['ROLE_USER']
 	//TODO: move specific action permissions to controller annotations
