@@ -24,7 +24,7 @@
 			<thead>
 					<tr>
 					
-						<th><g:message code="message.author.username" default="Author" /></th>
+						<%--<th><g:message code="message.author.username" default="Author" /></th>  --%>
 					
 						<g:sortableColumn property="messageBody" title="${message(code: 'message.messageBody.label', default: 'Message Body')}" />
 					
@@ -36,9 +36,9 @@
 				<g:each in="${messageInstanceList}" status="i" var="messageInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${messageInstance.id}">${fieldValue(bean: messageInstance, field: "author")}</g:link></td>
+						<%--  <td><g:link action="show" id="${messageInstance.id}">${fieldValue(bean: messageInstance, field: "author")}</g:link></td> --%>
 					
-						<td>${fieldValue(bean: messageInstance, field: "messageBody")}</td>
+						<td><g:link action="show" id="${messageInstance.id}">${fieldValue(bean: messageInstance, field: "messageBody")}</g:link></td>
 					
 						<td><g:formatDate date="${messageInstance.messageDate}" /></td>
 					

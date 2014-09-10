@@ -3,12 +3,12 @@ import grails.plugin.springsecurity.SpringSecurityService
 
 class Message {
 	
-	User author
+	//User author
 	String messageBody
 	Date messageDate
 	
     static constraints = {
-		author blank: false
+		//author blank: false
 		messageBody maxSize:10000, blank: false 
     }
 	
@@ -16,9 +16,9 @@ class Message {
 		messageDate = new Date()
 	}
 	
-	Message(String messageBody,User user){
+	Message(String messageBody/*, User  user*/){
 		messageDate = new Date()
 		messageBody = messageBody
-		author = user
+		//author = user
 	} 
 }

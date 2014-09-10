@@ -57,6 +57,17 @@ grails {
         // escapes all not-encoded output at final stage of outputting
         // filteringCodecForContentType.'text/html' = 'html'
     }
+	//mail settings
+	mail {
+		host = "smtp.gmail.com"
+		port = 465
+		username = "groovygrailsdemo@gmail.com"
+		password = "groovygroovy"
+		props = ["mail.smtp.auth":"true",
+				 "mail.smtp.socketFactory.port":"465",
+				 "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+				 "mail.smtp.socketFactory.fallback":"false"]
+	  }
 }
 
 
@@ -118,6 +129,7 @@ log4j.main = {
 
 
 // Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.logout.postOnly = false 
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'board.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'board.UserRole'
 grails.plugin.springsecurity.authority.className = 'board.Role'
@@ -125,6 +137,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'], //default rules
 	'/index':                         ['permitAll'],
 	'/index.gsp':                     ['permitAll'],
+	//'/logout/**':					  ['permitAll'],
 	'/assets/**':                     ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
@@ -132,10 +145,12 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/favicon.ico':                ['permitAll'],
 	
 	'/**': 							  ['ROLE_ADMIN'], //admins can see everything
-	'/register/index': 				  ['permitAll'],  //anyone can register
+	'/register/**': 				  ['permitAll'],  //anyone can register
 	
-	'message/index': 				  ['permitAll'], //anyone can view messages
-	
+	//'message/index': 				  ['permitAll'], //anyone can view messages
+	'/message/create': 				  ['ROLE_USER']
 	//TODO: move specific action permissions to controller annotations
 ]
+
+
 

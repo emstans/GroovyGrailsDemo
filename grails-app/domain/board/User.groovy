@@ -38,5 +38,7 @@ class User {
 
 	protected void encodePassword() {
 		password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
+		// Spring Security UI encodes the password twice, so remember to comment out:
+		// grails.plugin.springsecurity.ui.UserController lines 41 and 76
 	}
 }

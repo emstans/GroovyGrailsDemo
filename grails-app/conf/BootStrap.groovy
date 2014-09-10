@@ -12,7 +12,7 @@ class BootStrap {
 		testUser.save(flush: true)
 		UserRole.create testUser, userRole, true
 		
-		def testAdmin = new User(username: 'admin', enabled: true, password: 'password')
+		def testAdmin = new User(username: 'testadmin', enabled: true, password: 'password')
 		testAdmin.save(flush: true)
 		
 		//admin is both admin role and user role

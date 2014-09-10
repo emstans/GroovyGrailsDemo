@@ -1,7 +1,7 @@
 <%@ page import="board.Message" %>
 
 
-
+<%--
 <div class="fieldcontain ${hasErrors(bean: messageInstance, field: 'author', 'error')} required">
 	<label for="author">
 		<g:message code="message.author.label" default="Author" />
@@ -10,6 +10,7 @@
 	<g:select id="author" name="author.id" from="${board.User.list()}" optionKey="id" required="" value="${messageInstance?.author?.id}" class="many-to-one"/>
 
 </div>
+--%>
 
 <div class="fieldcontain ${hasErrors(bean: messageInstance, field: 'messageBody', 'error')} required">
 	<label for="messageBody">
@@ -26,6 +27,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<div id="messageDate"> ${messageInstance?.messageDate} </div>
-
+ 
 </div>
 

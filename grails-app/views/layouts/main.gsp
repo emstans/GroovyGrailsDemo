@@ -17,9 +17,16 @@
 		<g:layoutHead/>
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
+		<div id="grailsLogo" role="banner">
+			<g:link controller="Message">Message Index</g:link>
+			<g:link controller="Login">Log In</g:link>
+			<g:link controller="Logout">Log Out</g:link>
+			<g:link controller="Register">Register</g:link>
+		</div>
+		
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+		
 	</body>
 </html>

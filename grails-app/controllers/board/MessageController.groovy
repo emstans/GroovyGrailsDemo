@@ -26,7 +26,11 @@ class MessageController {
 	@Secured(['ROLE_USER']) //must be logged in to create a new message
     def create() {
 		String messageBody;
-        respond new Message(messageBody, User.get(springSecurityService.principal.id))
+		
+		//this doesn't work, don't know why:
+		//User user = springSecurityService.currentUser
+		
+        respond new Message(messageBody)
     }
 
 	@Secured(['ROLE_USER'])
@@ -43,7 +47,9 @@ class MessageController {
         }
 
 		messageInstance.messageDate = new Date()
-		//messageInstance.author = User.get(springSecurityService.principal.id)
+		
+		//this doesn't work, don't know why:
+		//messageInstance.author = springSecurityService.currentUser
 		
         messageInstance.save flush:true
 
